@@ -47,4 +47,12 @@ for i in wordlist:
     if i in dictonary:
         dictonary[i]+=1
 
-print(dictonary)
+maxvalue=max(dictonary.values())
+
+'''for key,value in dictonary.items():
+    if maxvalue==value:
+        answer=key'''
+
+answer=[key for key,value in dictonary.items() if maxvalue==value]
+
+print(f"the most frequently used word is {answer}")
