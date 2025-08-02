@@ -19,24 +19,31 @@ for i in range(8):
 
 def draw():
     global lines
-    desplay=time()-start_time
+
     screen.blit("space",(0,0))
     num=1
     for i in sats:
         i.draw()
         screen.draw.text(str(num),(i.pos[0],i.pos[1]+17))
         num+=1
-    screen.draw.text(str(round(desplay,1)),(30,30))
+    if next_satelite<8:
+        desplay=time()-start_time
+        screen.draw.text(str(round(desplay,1)),(30,30))
+    else:
+        screen.draw.text(str(round(desplay,1)),(30,30))
+
     for i in lines:
         screen.draw.line(i[0],i[1],"white")
 
 
+
 def update():
-    pass
+        pass
+
 
 next_satelite=0
 def on_mouse_down(pos):
-    global next_satelite,lines
+    global next_satelite,lines,t
     if next_satelite<8:
         if sats[next_satelite].collidepoint(pos):
             if next_satelite:
@@ -45,7 +52,8 @@ def on_mouse_down(pos):
         else:
             lines=[]
             next_satelite=0
-                
 
+
+                
 
 pgzrun.go()
