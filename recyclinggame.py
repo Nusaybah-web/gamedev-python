@@ -78,7 +78,7 @@ def complete():
     global items,ani,cl
     stop(ani)
     if cl==levels:
-        win==True
+        win=True
     else:
         cl+=1
         items=[]
@@ -102,6 +102,7 @@ def stop(anim):
 
 pgzrun.go()
                 
+
 
 
 
