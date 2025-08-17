@@ -21,7 +21,7 @@ cq=0
 tq=0
 
 
-sbm=f"welcome to kahoot, you are currently on question number {cq}/{tq}"
+
 
 info=[]
 
@@ -31,6 +31,8 @@ finished=False
 s=0
 
 def draw():
+    global cq,tq
+    sbm=f"welcome to kahoot, you are currently on question number {cq}/{tq}"
     screen.fill("black")
     screen.draw.filled_rect(sb,"black")
     screen.draw.filled_rect(q,"red")
@@ -99,6 +101,19 @@ def on_mouse_down(pos):
                 ca()
             else:
                 gameover()
+
+    if skip.collidepoint(pos):
+        skip2()
+
+def skip2():
+    global time,lines
+    if info and not finished:
+        lines=readquestions()
+        time=10
+    else:
+        gameover()
+
+
 questions()   
 
 lines=readquestions()
