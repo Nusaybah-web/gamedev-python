@@ -32,6 +32,8 @@ def get_text(i,j,gb,l1,l2):
             l2.config(state=DISABLED)
             l1.config(state=ACTIVE)
             board[i][j]="O"
+        sign+=1
+        button[i][j].config(text=board[i][j])
     if winner(board, "X"):
         gb.destroy()
         box=messagebox.showinfo("winner", "player 1 won the match")
@@ -46,7 +48,7 @@ def isfree(i,j):
     return board[i][j]== " "
 
 def isfull():
-    flaf=True
+    flag=True
     for i in board:
         if (i.count(" ")>0):
             flag=False
@@ -65,7 +67,7 @@ def gameboard_pl(game_board,l1,l2):
             get_t=partial(get_text,i,j,game_board,l1,l2)
             button[i][j]=Button(
                 game_board, bd=5, command=get_t, height=4,width=8)
-            button[i],[j].grid(row=m,column=n)
+            button[i][j].grid(row=m,column=n)
     game_board.mainloop()
             
 
@@ -99,7 +101,7 @@ def pc():
                 if i in [[0,1],[1,0],[1,2],[2,1]]:
                     edge.append(i)
             if len(edge)>0:
-                move=random.randint(0,len(edge-1))
+                move=random.randint(0,len(edge)-1)
                 return edge[move]
             
 
@@ -174,7 +176,7 @@ def  withplayer(game_board):
     l2=Button(game_board,text="player 2: O",
               width=10,state=DISABLED)
     l2.grid(row=2,column=1)
-    gameboard_pc(game_board,l1,l2)
+    gameboard_pl(game_board,l1,l2)
 
 def play():
     menu=Tk()
@@ -193,7 +195,7 @@ def play():
               activebackground="yellow", bg="red",
               fg="yellow", width=500, font="summer", bd=5)
     
-    B2=Button(menu, text="multi player", command=wpc,
+    B2=Button(menu, text="multi player", command=wpl,
                 activeforeground="red",
                 activebackground="yellow", bg="red",
                 fg="yellow", width=500, font="summer", bd=5)
