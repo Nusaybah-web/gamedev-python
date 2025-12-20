@@ -93,16 +93,16 @@ def pc():
         for i in possiblemove:
             if i in [[0,0],[0,2],[2,0],[2,2]]:
                 corner.append(i)
-            if len(corner)>0:
-                   move=random.randint(0,len(corner)-1)
-                   return corner[move]
-            edge=[]
-            for i in possiblemove:
-                if i in [[0,1],[1,0],[1,2],[2,1]]:
-                    edge.append(i)
-            if len(edge)>0:
-                move=random.randint(0,len(edge)-1)
-                return edge[move]
+        if len(corner)>0:
+                move=random.randint(0,len(corner)-1)
+                return corner[move]
+        edge=[]
+        for i in possiblemove:
+            if i in [[0,1],[1,0],[1,2],[2,1]]:
+                edge.append(i)
+        if len(edge)>0:
+            move=random.randint(0,len(edge)-1)
+            return edge[move]
             
 
 def get_text_pc(i,j,gb,l1,l2):
@@ -113,7 +113,7 @@ def get_text_pc(i,j,gb,l1,l2):
             l2.config(state=ACTIVE)
             board[i][j]="X"
         else:
-            button[i][j].config(state=ACTIVE)
+            button[i][j].config(state=DISABLED)
             l2.config(state=DISABLED)
             l1.config(state=ACTIVE)
             board[i][j]="O"
@@ -149,7 +149,7 @@ def gameboard_pc(game_board,l1,l2):
         for j in range(3):
             n=j
             button[i].append(j)
-            get_t=partial(get_text,i,j,game_board,l1,l2)
+            get_t=partial(get_text_pc,i,j,game_board,l1,l2)
             button[i][j]=Button(
                 game_board, bd=5, command=get_t, height=4,width=8)
             button[i][j].grid(row=m,column=n)
