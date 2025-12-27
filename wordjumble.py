@@ -4,11 +4,12 @@ import random
 score=0
 
 words=["apple","orange","banana","sweden","school","paper","words","brain","fire","cake"]
-
 letters=[]
 for i in words:
     letters.append(" ".join(random.sample(i,len(i))))
 
+
+r=random.randrange(0,len(letters),1)
 
 def reset():
     global r,letters,words
@@ -16,6 +17,10 @@ def reset():
     lable2.config(text=letters[r])
     entry.delete(0,END)
 
+
+def default():
+    global r,letters,lable2
+    lable2.config(text=letters[r])
 
 def pl():
     global r,score,letters,lable3
@@ -27,9 +32,6 @@ def pl():
     lable3.config(text="Score: "+str(score))
     reset() 
 
-def default():
-    global r,letters,lable2
-    lable2.config(text=letters[r])
 
 
 
