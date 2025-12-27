@@ -9,24 +9,27 @@ letters=[]
 for i in words:
     letters.append(" ".join(random.sample(i,len(i))))
 
-num=0
+
+def reset():
+    global r,letters,words
+    r=random.randrange(0,len(letters),1)
+    lable2.config(text=letters[r])
+    entry.delete(0,END)
+
 
 def pl():
-    global num,score,letters,lable3
-    lable2.config(text=letters[num])
+    global r,score,letters,lable3
+    lable2.config(text=letters[r])
     answer=entry.get()
-    if answer==words[num]:
+    if answer==words[r]:
         score+=1
-    entry.delete(0,END)
-    num+=1
-    lable3.forget()
-    lable3=Label(root,text=f"Score: 0",font=("ariel",15,"normal"),bg="black",fg="white")
-    lable3.pack(anchor=W)
-    lable3.config(text="Score: "+str(score))
     
+    lable3.config(text="Score: "+str(score))
+    reset() 
+
 def default():
-    global num,letters,lable2
-    lable2.config(text=letters[num])
+    global r,letters,lable2
+    lable2.config(text=letters[r])
 
 
 
@@ -51,6 +54,7 @@ button2.pack(pady=5)
 
 
 lable3=Label(root,text=f"Score: 0",font=("ariel",15,"normal"),bg="black",fg="white")
+lable3.pack(anchor=W)
 
 default()
 
