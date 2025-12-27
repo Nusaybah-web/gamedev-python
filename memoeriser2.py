@@ -57,7 +57,8 @@ def delete():
     else:
         messagebox.showerror("error", "theres nothing to add")
 
-def open():
+def open_file():
+    global my_adress_book
     o=askopenfile()
 
     lb.delete(0,END)
@@ -115,7 +116,7 @@ button_delete.grid(row=2, column=1, pady=10)
 frame2 = Frame(root, padx=10, pady=10)
 frame2.grid(row=0, column=1, sticky="n")
 
-button_open = Button(frame2, text="Open", width=10,command=open)
+button_open = Button(frame2, text="Open", width=10,command=open_file)
 button_open.grid(row=0, column=1, sticky="e", pady=(0, 10))
 
 label_name = Label(frame2, text="Name:")
